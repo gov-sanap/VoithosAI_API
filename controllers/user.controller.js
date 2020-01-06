@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 module.exports.register = (req, res, next) => {
-    var user = new User();
+    const user = new User();
     user.fullName = req.body.fullName;
     user.email = req.body.email;
     user.password = req.body.password;
+    user.clientID = req.body.clientID;
     user.save((err, doc) => {
         if (!err)
             res.send(doc);
@@ -16,6 +17,5 @@ module.exports.register = (req, res, next) => {
             else
                 return next(err);
         }
-
     });
 }
